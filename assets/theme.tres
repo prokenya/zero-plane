@@ -1,0 +1,56 @@
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://boc0imai01a1k"]
+
+[ext_resource type="Texture2D" uid="uid://b3hdx6nocdu31" path="res://src/gui/icons/button.png" id="1_wl1kw"]
+[ext_resource type="FontFile" uid="uid://bj8twd8jhovqh" path="res://assets/font/PixeloidSans.ttf" id="2_lu33j"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wycmq"]
+texture = ExtResource("1_wl1kw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wl1kw"]
+texture = ExtResource("1_wl1kw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lu33j"]
+texture = ExtResource("1_wl1kw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x2pqw"]
+texture = ExtResource("1_wl1kw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e8htd"]
+texture = ExtResource("1_wl1kw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wms38"]
+texture = ExtResource("1_wl1kw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bcf2e"]
+texture = ExtResource("1_wl1kw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7g2p0"]
+texture = ExtResource("1_wl1kw")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_357y2"]
+texture = ExtResource("1_wl1kw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_llqld"]
+texture = ExtResource("1_wl1kw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uy2me"]
+texture = ExtResource("1_wl1kw")
+
+[resource]
+default_font = ExtResource("2_lu33j")
+default_font_size = 32
+Button/styles/disabled = SubResource("StyleBoxTexture_wycmq")
+Button/styles/disabled_mirrored = SubResource("StyleBoxTexture_wl1kw")
+Button/styles/focus = SubResource("StyleBoxTexture_lu33j")
+Button/styles/hover = SubResource("StyleBoxTexture_x2pqw")
+Button/styles/hover_mirrored = SubResource("StyleBoxTexture_e8htd")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_wms38")
+Button/styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_bcf2e")
+Button/styles/normal = SubResource("StyleBoxTexture_7g2p0")
+Button/styles/normal_mirrored = SubResource("StyleBoxTexture_357y2")
+Button/styles/pressed = SubResource("StyleBoxTexture_llqld")
+Button/styles/pressed_mirrored = SubResource("StyleBoxTexture_uy2me")

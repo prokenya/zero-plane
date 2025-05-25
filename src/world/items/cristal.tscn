@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://pph67qq8n24n"]
+
+[ext_resource type="Script" uid="uid://depf0d0ljskr7" path="res://src/world/items/cristal.gd" id="1_1whm1"]
+[ext_resource type="Texture2D" uid="uid://bnspv6n20ihd3" path="res://src/world/items/cristals.png" id="2_3vtv2"]
+
+[sub_resource type="Gradient" id="Gradient_1whm1"]
+offsets = PackedFloat32Array(0, 0.662338)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j0jqn"]
+gradient = SubResource("Gradient_1whm1")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1whm1"]
+size = Vector2(8, 16)
+
+[node name="cristal" type="Area2D"]
+texture_filter = 1
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_1whm1")
+lock_rotation = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 2.79637)
+texture = ExtResource("2_3vtv2")
+hframes = 4
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
+color = Color(0.329412, 0.282353, 0.4, 1)
+energy = 3.0
+range_z_max = -1
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_j0jqn")
+texture_scale = 2.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_1whm1")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

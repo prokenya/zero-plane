@@ -1,0 +1,122 @@
+[gd_scene load_steps=18 format=3 uid="uid://cix6x80m6bvn0"]
+
+[ext_resource type="Texture2D" uid="uid://dm70lbuhmeyl1" path="res://src/player/assets/cube.png" id="1_4anbu"]
+[ext_resource type="Script" uid="uid://3kp8isuwije0" path="res://src/player/player.gd" id="1_244u8"]
+[ext_resource type="Shader" uid="uid://b8mxxy8j7cqr3" path="res://src/player/assets/pulse.gdshader" id="1_mf2ua"]
+[ext_resource type="Texture2D" uid="uid://p3t3ghl72mnl" path="res://src/player/assets/cube_n.png" id="2_rxibo"]
+[ext_resource type="Script" uid="uid://c24j0yjd7e411" path="res://src/player/components/insteraction_component.gd" id="5_5f2sf"]
+[ext_resource type="AudioStream" uid="uid://bu4j2arcp0ssk" path="res://assets/audio/magnetized.wav" id="6_jiejy"]
+[ext_resource type="AudioStream" uid="uid://cbg8ba1ydxsm4" path="res://assets/audio/demagnetized.wav" id="7_o822w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnmj6"]
+size = Vector2(16, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_244u8"]
+shader = ExtResource("1_mf2ua")
+shader_parameter/addcolor = Color(7.94157e-07, 0.43316, 0.221073, 1)
+shader_parameter/factor = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_mf2ua"]
+diffuse_texture = ExtResource("1_4anbu")
+normal_texture = ExtResource("2_rxibo")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_244u8"]
+cull_mode = 2
+polygon = PackedVector2Array(-8, 8, -8, -8, 8, -8, 8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mf2ua"]
+size = Vector2(17, 17)
+
+[sub_resource type="Gradient" id="Gradient_244u8"]
+colors = PackedColorArray(5.39064e-06, 0.889367, 0.376084, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5f2sf"]
+gradient = SubResource("Gradient_244u8")
+width = 25
+
+[sub_resource type="Gradient" id="Gradient_5f2sf"]
+colors = PackedColorArray(0.858698, 0.692918, 0, 1, 7.70092e-07, 0.569691, 0.843435, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jiejy"]
+gradient = SubResource("Gradient_5f2sf")
+width = 25
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f2sf"]
+size = Vector2(12, 12)
+
+[node name="player" type="CharacterBody2D"]
+z_index = -1
+texture_filter = 1
+collision_mask = 3
+script = ExtResource("1_244u8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qnmj6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_244u8")
+texture = SubResource("CanvasTexture_mf2ua")
+hframes = 4
+frame = 1
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+occluder = SubResource("OccluderPolygon2D_244u8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="magnet_area" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="magnet_area"]
+shape = SubResource("RectangleShape2D_mf2ua")
+
+[node name="no_magnet_area" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="no_magnet_area"]
+shape = SubResource("RectangleShape2D_mf2ua")
+
+[node name="debug" type="Node2D" parent="."]
+visible = false
+
+[node name="graviti" type="Sprite2D" parent="debug"]
+texture = SubResource("GradientTexture1D_5f2sf")
+
+[node name="direction" type="Sprite2D" parent="debug"]
+texture = SubResource("GradientTexture1D_jiejy")
+
+[node name="insteraction" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("5_5f2sf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="insteraction"]
+shape = SubResource("RectangleShape2D_mf2ua")
+
+[node name="hurbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurbox"]
+shape = SubResource("RectangleShape2D_5f2sf")
+
+[node name="magnetized_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jiejy")
+bus = &"sfx"
+
+[node name="demagnetized_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_o822w")
+bus = &"sfx"
+
+[connection signal="body_entered" from="magnet_area" to="." method="_on_magnet_area_body_entered"]
+[connection signal="body_exited" from="magnet_area" to="." method="_on_magnet_area_body_exited"]
+[connection signal="body_entered" from="no_magnet_area" to="." method="_on_no_magnet_area_body_entered"]
+[connection signal="body_exited" from="no_magnet_area" to="." method="_on_no_magnet_area_body_exited"]
+[connection signal="area_entered" from="insteraction" to="insteraction" method="_on_area_entered"]
+[connection signal="area_exited" from="insteraction" to="insteraction" method="_on_area_exited"]
+[connection signal="body_entered" from="hurbox" to="." method="_on_hurbox_body_entered"]

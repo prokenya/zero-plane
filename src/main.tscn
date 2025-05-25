@@ -1,0 +1,387 @@
+[gd_scene load_steps=18 format=3 uid="uid://bgns7ip7pfnf1"]
+
+[ext_resource type="Script" uid="uid://cpis4076h0opn" path="res://src/main.gd" id="1_eewff"]
+[ext_resource type="Script" uid="uid://d3wu4e423odsl" path="res://src/gui/gui.gd" id="2_fyndt"]
+[ext_resource type="Theme" uid="uid://boc0imai01a1k" path="res://assets/theme.tres" id="2_kmhfv"]
+[ext_resource type="PackedScene" uid="uid://djej13oqxh5jt" path="res://src/world/world1.tscn" id="2_rlaii"]
+[ext_resource type="Texture2D" uid="uid://k61gjna0215m" path="res://src/gui/icons/REVERSE_P.png" id="5_5mrjc"]
+[ext_resource type="Texture2D" uid="uid://bb6yoyyii5iwm" path="res://src/gui/fonts/font2.png" id="5_fyndt"]
+[ext_resource type="Texture2D" uid="uid://dmfqrsadwltd" path="res://src/gui/icons/gravity.png" id="5_kmhfv"]
+[ext_resource type="Script" uid="uid://b3t46wlrnfklc" path="res://src/gui/custom_texture_rect.gd" id="6_rlaii"]
+[ext_resource type="Texture2D" uid="uid://djlmvvjx0xx20" path="res://src/gui/icons/REVERSE_G.png" id="8_kf8lf"]
+[ext_resource type="Script" uid="uid://w7nr65vb48ls" path="res://src/information.gd" id="9_mgm53"]
+[ext_resource type="Texture2D" uid="uid://b7skys5or35x1" path="res://assets/guide/2 guide.png" id="10_uewes"]
+
+[sub_resource type="Animation" id="Animation_rlaii"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/NinePatchRect:patch_margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer/HBoxContainer/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer/HBoxContainer/VBoxContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PanelContainer/HBoxContainer/settingsContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PanelContainer/HBoxContainer/settingsContainer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kf8lf"]
+resource_name = "ShowSettings"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/NinePatchRect:patch_margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [122, 355]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer/HBoxContainer/settingsContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.49, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer/HBoxContainer/settingsContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kmhfv"]
+resource_name = "showGUI"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/NinePatchRect:patch_margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 122]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer/HBoxContainer/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer/HBoxContainer/VBoxContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.49, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rlaii"]
+_data = {
+&"RESET": SubResource("Animation_rlaii"),
+&"ShowSettings": SubResource("Animation_kf8lf"),
+&"showGUI": SubResource("Animation_kmhfv")
+}
+
+[sub_resource type="Gradient" id="Gradient_rlaii"]
+interpolation_mode = 2
+colors = PackedColorArray(0.396078, 0.352941, 0.458824, 1, 0.164706, 0.141176, 0.2, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5mrjc"]
+gradient = SubResource("Gradient_rlaii")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_eewff")
+worlds = Array[PackedScene]([ExtResource("2_rlaii")])
+
+[node name="GUICanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="gui" type="Control" parent="GUICanvasLayer" node_paths=PackedStringArray("main")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_kmhfv")
+script = ExtResource("2_fyndt")
+main = NodePath("../..")
+
+[node name="PanelContainer" type="PanelContainer" parent="GUICanvasLayer/gui"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GUICanvasLayer/gui/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUICanvasLayer/gui/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUICanvasLayer/gui/PanelContainer/HBoxContainer"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="play" type="Button" parent="GUICanvasLayer/gui/PanelContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+text = "play"
+
+[node name="settings" type="Button" parent="GUICanvasLayer/gui/PanelContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+focus_mode = 0
+text = "settings"
+
+[node name="info" type="Button" parent="GUICanvasLayer/gui/PanelContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "info"
+
+[node name="quit" type="Button" parent="GUICanvasLayer/gui/PanelContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+focus_mode = 0
+text = "quit"
+
+[node name="settingsContainer" type="GridContainer" parent="GUICanvasLayer/gui/PanelContainer/HBoxContainer"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 2
+
+[node name="Label" type="Label" parent="GUICanvasLayer/gui/PanelContainer/HBoxContainer/settingsContainer"]
+layout_mode = 2
+text = "sfx"
+horizontal_alignment = 2
+
+[node name="Spinsfx" type="SpinBox" parent="GUICanvasLayer/gui/PanelContainer/HBoxContainer/settingsContainer"]
+layout_mode = 2
+value = 50.0
+
+[node name="Label2" type="Label" parent="GUICanvasLayer/gui/PanelContainer/HBoxContainer/settingsContainer"]
+layout_mode = 2
+text = "music"
+horizontal_alignment = 2
+
+[node name="Spinmusic" type="SpinBox" parent="GUICanvasLayer/gui/PanelContainer/HBoxContainer/settingsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+value = 50.0
+
+[node name="GUIanimations" type="AnimationPlayer" parent="GUICanvasLayer/gui"]
+libraries = {
+&"": SubResource("AnimationLibrary_rlaii")
+}
+autoplay = "showGUI"
+speed_scale = 3.0
+
+[node name="stats" type="PanelContainer" parent="GUICanvasLayer/gui"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_bottom = 16.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(36, 0)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GUICanvasLayer/gui/stats"]
+self_modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 2
+texture = SubResource("GradientTexture2D_5mrjc")
+
+[node name="status" type="HBoxContainer" parent="GUICanvasLayer/gui/stats"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 2
+
+[node name="grvaity_reverse" type="TextureRect" parent="GUICanvasLayer/gui/stats/status"]
+layout_mode = 2
+size_flags_horizontal = 10
+texture = ExtResource("5_5mrjc")
+script = ExtResource("6_rlaii")
+texure_list = Array[Texture2D]([ExtResource("5_5mrjc"), ExtResource("8_kf8lf")])
+
+[node name="gravity" type="TextureRect" parent="GUICanvasLayer/gui/stats/status"]
+layout_mode = 2
+size_flags_horizontal = 10
+texture = ExtResource("5_kmhfv")
+script = ExtResource("6_rlaii")
+
+[node name="transition layer" type="CanvasLayer" parent="GUICanvasLayer/gui"]
+layer = 128
+
+[node name="transition" type="ColorRect" parent="GUICanvasLayer/gui/transition layer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="info" type="CanvasLayer" parent="GUICanvasLayer/gui" node_paths=PackedStringArray("gui", "pages")]
+layer = 2
+visible = false
+script = ExtResource("9_mgm53")
+gui = NodePath("..")
+pages = [NodePath("VBoxContainer/RichTextLabel"), NodePath("VBoxContainer/TextureRect")]
+
+[node name="ColorRect" type="ColorRect" parent="GUICanvasLayer/gui/info"]
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUICanvasLayer/gui/info"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GUICanvasLayer/gui/info/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "We are aboard a ship that is falling apart. In the past, all the walls were magnetic so that capsules containing aliens could move through it without any problems. Now, many of the walls are covered in moss, which has broken the electromagnets. To make movement possible again, crystals were created that affect the capsules in different ways.
+
+Your goal is to escape the ship into open space."
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GUICanvasLayer/gui/info/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+texture = ExtResource("10_uewes")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="GUICanvasLayer/gui/info/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.647059)
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_kmhfv")
+theme_override_font_sizes/font_size = 16
+text = "press any button to continue"
+horizontal_alignment = 2
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -128
+
+[node name="TextureRect" type="TextureRect" parent="BG"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_fyndt")
+expand_mode = 1
+
+[connection signal="pressed" from="GUICanvasLayer/gui/PanelContainer/HBoxContainer/VBoxContainer/play" to="GUICanvasLayer/gui" method="_on_play_pressed"]
+[connection signal="pressed" from="GUICanvasLayer/gui/PanelContainer/HBoxContainer/VBoxContainer/settings" to="GUICanvasLayer/gui" method="_on_settings_pressed"]
+[connection signal="pressed" from="GUICanvasLayer/gui/PanelContainer/HBoxContainer/VBoxContainer/info" to="GUICanvasLayer/gui/info" method="start"]
+[connection signal="pressed" from="GUICanvasLayer/gui/PanelContainer/HBoxContainer/VBoxContainer/quit" to="GUICanvasLayer/gui" method="_on_quit_pressed"]
+[connection signal="value_changed" from="GUICanvasLayer/gui/PanelContainer/HBoxContainer/settingsContainer/Spinsfx" to="GUICanvasLayer/gui" method="_on_spinsfx_value_changed"]
+[connection signal="value_changed" from="GUICanvasLayer/gui/PanelContainer/HBoxContainer/settingsContainer/Spinmusic" to="GUICanvasLayer/gui" method="_on_spinmusic_value_changed"]
