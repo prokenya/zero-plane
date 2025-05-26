@@ -27,6 +27,8 @@ var default_gravity_direction = Vector2.DOWN
 
 @onready var magnetized_player: AudioStreamPlayer = $magnetized_player
 @onready var demagnetized_player: AudioStreamPlayer = $demagnetized_player
+@onready var hurt_player: AudioStreamPlayer = $hurt_player
+
 
 func _ready() -> void:
 	Global.in_game = true
@@ -42,7 +44,7 @@ func _physics_process(delta: float) -> void:
 		velocity += 980 * gravity_direction * delta;
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") && on_something:
+	if Input.is_action_just_pressed("ui_accept") && on_something and not is_on_wall():
 		velocity += JUMP_VELOCITY * gravity_direction
 		
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -57,7 +59,6 @@ func _physics_process(delta: float) -> void:
 		if direction.x != 0:
 			velocity.x = clamp(velocity.x + addvelocity.x,-SPEED,SPEED)
 
-			
 	elif on_something and !Input.is_action_just_pressed("ui_accept"):
 		velocity = lerp(velocity,Vector2.ZERO,0.9)
 		if !is_on_magnet:
@@ -142,4 +143,5 @@ func set_shader_param(to:int = 1):
 func _on_hurbox_body_entered(body: Node2D) -> void:
 	velocity = Vector2.ZERO
 	position = Vector2.ZERO
+	hurt_player.play()
 	reset_player()

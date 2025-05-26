@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bgns7ip7pfnf1"]
+[gd_scene load_steps=20 format=3 uid="uid://bgns7ip7pfnf1"]
 
 [ext_resource type="Script" uid="uid://cpis4076h0opn" path="res://src/main.gd" id="1_eewff"]
 [ext_resource type="Script" uid="uid://d3wu4e423odsl" path="res://src/gui/gui.gd" id="2_fyndt"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://djlmvvjx0xx20" path="res://src/gui/icons/REVERSE_G.png" id="8_kf8lf"]
 [ext_resource type="Script" uid="uid://w7nr65vb48ls" path="res://src/information.gd" id="9_mgm53"]
 [ext_resource type="Texture2D" uid="uid://b7skys5or35x1" path="res://assets/guide/2 guide.png" id="10_uewes"]
+[ext_resource type="Texture2D" uid="uid://byxh8ju27bd4u" path="res://src/gui/fonts/font3.png" id="11_kqbth"]
 
 [sub_resource type="Animation" id="Animation_rlaii"]
 length = 0.001
@@ -172,6 +173,10 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_kqbth"]
+font_size = 40
+font_color = Color(0, 1, 0, 1)
+
 [node name="Main" type="Node"]
 script = ExtResource("1_eewff")
 worlds = Array[PackedScene]([ExtResource("2_rlaii")])
@@ -322,7 +327,7 @@ layer = 2
 visible = false
 script = ExtResource("9_mgm53")
 gui = NodePath("..")
-pages = [NodePath("VBoxContainer/RichTextLabel"), NodePath("VBoxContainer/TextureRect")]
+pages = [NodePath("VBoxContainer/RichTextLabel"), NodePath("VBoxContainer/PanelContainer")]
 
 [node name="ColorRect" type="ColorRect" parent="GUICanvasLayer/gui/info"]
 offset_right = 640.0
@@ -350,13 +355,37 @@ text = "We are aboard a ship that is falling apart. In the past, all the walls w
 Your goal is to escape the ship into open space."
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="GUICanvasLayer/gui/info/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="GUICanvasLayer/gui/info/VBoxContainer"]
 visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUICanvasLayer/gui/info/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUICanvasLayer/gui/info/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 texture = ExtResource("10_uewes")
 expand_mode = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GUICanvasLayer/gui/info/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Controls
+
+    W – Move Up
+
+    S – Move Down
+
+    A – Move Left
+
+    D – Move Right
+
+    Space – Interact with crystal / Jump
+
+    Escape – Open/Close Menu"
 
 [node name="Label" type="Label" parent="GUICanvasLayer/gui/info/VBoxContainer"]
 self_modulate = Color(1, 1, 1, 0.647059)
@@ -369,6 +398,36 @@ horizontal_alignment = 2
 
 [node name="BG" type="CanvasLayer" parent="."]
 layer = -128
+
+[node name="bg" type="TextureRect" parent="BG"]
+visible = false
+modulate = Color(0.321728, 0.321728, 0.321728, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("11_kqbth")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="BG/bg"]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -80.0
+offset_right = 184.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Thanks for playing"
+label_settings = SubResource("LabelSettings_kqbth")
 
 [node name="TextureRect" type="TextureRect" parent="BG"]
 anchors_preset = 15

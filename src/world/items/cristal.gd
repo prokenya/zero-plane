@@ -12,6 +12,9 @@ enum types
 @onready var point_light: PointLight2D = $Sprite2D/PointLight2D
 @onready var timer: Timer = $Timer
 
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
+
 @export var type = types.GRAVITY:
 	get:
 		return type
@@ -21,6 +24,7 @@ enum types
 			sprite.frame = type
 @export var lock_rotation:bool = (type != types.GRAVITY)
 
+@export var streams:Array[AudioStream]
 
 var rotation_tween
 var light_tween
@@ -43,10 +47,10 @@ func interact(player:Player) -> bool:
 	if !timer.is_stopped(): return false
 	
 	match type:
-		0: interact_gravity(player)
-		1: interact_reverse(player)
-		2: interact_reverse(player)
-		3: insteract_dash(player)
+		0: interact_gravity(player);play_sound(0)
+		1: interact_reverse(player);play_sound(1)
+		2: interact_reverse(player);play_sound(1)
+		3: insteract_dash(player);play_sound(2)
 		
 	timer.start()
 	return true
@@ -104,3 +108,7 @@ func animate_cristal():
 	var tween := create_tween().set_loops()
 	tween.tween_property(sprite, "position", up_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(sprite, "position", down_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+func play_sound(id:int):
+	audio_stream_player.stream = streams[id]
+	audio_stream_player.play()

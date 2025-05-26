@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://pph67qq8n24n"]
+[gd_scene load_steps=9 format=3 uid="uid://pph67qq8n24n"]
 
 [ext_resource type="Script" uid="uid://depf0d0ljskr7" path="res://src/world/items/cristal.gd" id="1_1whm1"]
 [ext_resource type="Texture2D" uid="uid://bnspv6n20ihd3" path="res://src/world/items/cristals.png" id="2_3vtv2"]
+[ext_resource type="AudioStream" uid="uid://c2wyr1ej31a04" path="res://assets/audio/gravity.wav" id="2_iy532"]
+[ext_resource type="AudioStream" uid="uid://xi4ad8ipippj" path="res://assets/audio/reverse.wav" id="3_iy532"]
+[ext_resource type="AudioStream" uid="uid://on4gc0qtfylm" path="res://assets/audio/dash.wav" id="4_so2uq"]
 
 [sub_resource type="Gradient" id="Gradient_1whm1"]
 offsets = PackedFloat32Array(0, 0.662338)
@@ -22,10 +25,11 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("1_1whm1")
 lock_rotation = false
+streams = Array[AudioStream]([ExtResource("2_iy532"), ExtResource("3_iy532"), ExtResource("4_so2uq")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(0, 2.79637)
+position = Vector2(0, -1.70227)
 texture = ExtResource("2_3vtv2")
 hframes = 4
 
@@ -43,3 +47,5 @@ shape = SubResource("RectangleShape2D_1whm1")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

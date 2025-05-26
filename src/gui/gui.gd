@@ -1,7 +1,8 @@
 extends Control
 class_name GUI
 @onready var gui_animations: AnimationPlayer = $GUIanimations
-@onready var bg: CanvasLayer = $"../../BG"
+@onready var bg:= $"../../BG/TextureRect"
+@onready var bg_end = $"../../BG/bg"
 @onready var status: HBoxContainer = %status
 @onready var play: Button = %play
 @export var main:Main
@@ -94,6 +95,8 @@ func _on_quit_pressed() -> void:
 		Global.main.dispawn()
 		bg.show()
 		play.show()
+		gui_animations.play("showGUI")
+		is_in_ui = true
 		set_dafault_status()
 		await set_transition(false)
 	else:
