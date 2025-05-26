@@ -29,7 +29,7 @@ streams = Array[AudioStream]([ExtResource("2_iy532"), ExtResource("3_iy532"), Ex
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(0, -1.70227)
+position = Vector2(0, -0.00778627)
 texture = ExtResource("2_3vtv2")
 hframes = 4
 
