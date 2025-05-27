@@ -9,6 +9,10 @@ var reverce_magnet:bool = false:
 	set(value):
 		reverce_magnet = value
 		set_shader_param(3 if value else 0)
+		if value:
+			is_on_magnet = magnet_state[1]
+		else:
+			is_on_magnet = magnet_state[0]
 @export var is_on_magnet: bool = false
 var old_is_on_magnet:bool = is_on_magnet
 	
@@ -16,7 +20,7 @@ var old_is_on_magnet:bool = is_on_magnet
 	set(value):
 		on_something = value
 		if sprite:
-			if on_something:
+			if is_on_magnet:
 				sprite.frame = 1
 			else:
 				sprite.frame = 0
@@ -40,11 +44,11 @@ func _physics_process(delta: float) -> void:
 	on_something = is_on_wall() or is_on_floor() or is_on_ceiling()
 	up_direction = -gravity_direction
 	#print("f> "+str(is_on_floor()) + " w> "+str(is_on_wall()) + " c> "+str(is_on_ceiling()))
-	if not is_on_magnet or not on_something:
-		velocity += 980 * gravity_direction * delta;
+	#if not is_on_magnet or not on_something:
+		#velocity += 980 * gravity_direction * delta;
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") && on_something and not is_on_wall():
+	if Input.is_action_just_pressed("ui_accept") && is_on_floor():
 		velocity += JUMP_VELOCITY * gravity_direction
 		
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -58,11 +62,13 @@ func _physics_process(delta: float) -> void:
 			velocity.y = clamp(velocity.y + addvelocity.y,-SPEED,SPEED)
 		if direction.x != 0:
 			velocity.x = clamp(velocity.x + addvelocity.x,-SPEED,SPEED)
+			
+	elif is_on_floor() and !Input.is_action_just_pressed("ui_accept") and !direction:
+			velocity = lerp(velocity,Vector2.ZERO,0.9)
 
-	elif on_something and !Input.is_action_just_pressed("ui_accept"):
-		velocity = lerp(velocity,Vector2.ZERO,0.9)
-		if !is_on_magnet:
-			velocity.x = lerpf(velocity.x,0.0,0.9)
+	if not is_on_magnet or not on_something:
+		velocity += 980 * gravity_direction * delta;
+	
 
 	$debug/graviti.rotation = gravity_direction.angle()
 	$debug/direction.rotation = player_direction.angle()
@@ -111,9 +117,11 @@ func _on_magnet_area_body_exited(body: Node2D) -> void:
 
 func _on_no_magnet_area_body_entered(body: Node2D) -> void:
 	update_magnet_state(null,true)
+	
 
 func _on_no_magnet_area_body_exited(body: Node2D) -> void:
 	update_magnet_state(null,false)
+	
 
 var magnet_state:Array[bool] = [false,false]
 func update_magnet_state(is_in_magnet_area,is_in_no_magnet_area = null) -> void: 

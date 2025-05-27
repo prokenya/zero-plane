@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bgns7ip7pfnf1"]
+[gd_scene load_steps=21 format=3 uid="uid://bgns7ip7pfnf1"]
 
 [ext_resource type="Script" uid="uid://cpis4076h0opn" path="res://src/main.gd" id="1_eewff"]
 [ext_resource type="Script" uid="uid://d3wu4e423odsl" path="res://src/gui/gui.gd" id="2_fyndt"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://w7nr65vb48ls" path="res://src/information.gd" id="9_mgm53"]
 [ext_resource type="Texture2D" uid="uid://b7skys5or35x1" path="res://assets/guide/2 guide.png" id="10_uewes"]
 [ext_resource type="Texture2D" uid="uid://byxh8ju27bd4u" path="res://src/gui/fonts/font3.png" id="11_kqbth"]
+[ext_resource type="Texture2D" uid="uid://cxjacgh3e3a2x" path="res://assets/guide/3 guide.png" id="11_srxbw"]
 
 [sub_resource type="Animation" id="Animation_rlaii"]
 length = 0.001
@@ -370,27 +371,27 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="GUICanvasLayer/gui/info/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 size_flags_vertical = 3
 texture = ExtResource("10_uewes")
 expand_mode = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GUICanvasLayer/gui/info/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="GUICanvasLayer/gui/info/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_srxbw")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="GUICanvasLayer/gui/info/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Controls
 
-    W – Move Up
+W – Move Up
+S – Move Down
+A – Move Left
+D – Move Right
 
-    S – Move Down
-
-    A – Move Left
-
-    D – Move Right
-
-    Space – Interact with crystal / Jump
-
-    Escape – Open/Close Menu"
+Space – Interact with crystal / Jump
+Escape – Open/Close Menu"
 
 [node name="Label" type="Label" parent="GUICanvasLayer/gui/info/VBoxContainer"]
 self_modulate = Color(1, 1, 1, 0.647059)

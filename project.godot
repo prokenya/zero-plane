@@ -78,3 +78,4 @@ ui_down={
 2d_physics/layer_2="no magnet"
 2d_physics/layer_3="interactions"
 2d_physics/layer_4="hitbox layer"
+2d_physics/layer_5="player"

@@ -23,6 +23,7 @@ enum types
 		if sprite:
 			sprite.frame = type
 @export var lock_rotation:bool = (type != types.GRAVITY)
+@export var dash_impulse:float = 700.0
 
 @export var streams:Array[AudioStream]
 
@@ -79,7 +80,7 @@ func interact_reverse(player:Player):
 func insteract_dash(player:Player):
 	var angle = rotation + deg_to_rad(90.0)
 	var direction = Vector2(cos(angle), sin(angle)).normalized()
-	player.velocity = direction * 700
+	player.velocity = direction * dash_impulse
 	animate_light()
 
 func animate_rotation(angle:float):

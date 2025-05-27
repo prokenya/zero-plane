@@ -12,7 +12,7 @@ func _on_area_exited(inter: Area2D) -> void:
 	interaction = null
 
 func _input(event: InputEvent) -> void:
-	if player.on_something: return
+	if player.is_on_floor(): return
 	if Input.is_action_just_pressed("ui_accept"):
 		inter_pressed = true
 	if Input.is_action_just_released("ui_accept"):

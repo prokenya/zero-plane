@@ -48,6 +48,7 @@ size = Vector2(12, 12)
 [node name="player" type="CharacterBody2D"]
 z_index = -1
 texture_filter = 1
+collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_244u8")
 
@@ -68,6 +69,7 @@ zoom = Vector2(2, 2)
 
 [node name="magnet_area" type="Area2D" parent="."]
 visible = false
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="magnet_area"]
 shape = SubResource("RectangleShape2D_mf2ua")

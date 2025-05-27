@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://ufcihfx1b6x7"]
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://ufcihfx1b6x7"]
 
 [ext_resource type="Texture2D" uid="uid://d3xl5ngkc4fkl" path="res://src/world/assets/tilemap-purple.png" id="1_a7844"]
 [ext_resource type="Texture2D" uid="uid://c5wn0u07itl6y" path="res://src/world/assets/background/animatedbacgroundPULSE.png" id="2_jq6p4"]
+[ext_resource type="Texture2D" uid="uid://bla6ty8v6xad1" path="res://src/world/assets/black.png" id="3_aemin"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_jq6p4"]
 tile_data = PackedInt32Array(0, 393216, 805306371, 1, 65536, 2)
@@ -311,6 +312,11 @@ texture = ExtResource("2_jq6p4")
 0:0/0 = 0
 0:0/0/z_index = -2
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gc1ai"]
+texture = ExtResource("3_aemin")
+0:0/0 = 0
+0:0/0/z_index = -512
+
 [resource]
 physics_layer_0/collision_layer = 1
 physics_layer_1/collision_layer = 2
@@ -322,4 +328,5 @@ terrain_set_0/terrain_1/name = "green"
 terrain_set_0/terrain_1/color = Color(0, 0.534274, 0.206665, 1)
 sources/0 = SubResource("TileSetAtlasSource_rw0ll")
 sources/1 = SubResource("TileSetAtlasSource_aemin")
+sources/2 = SubResource("TileSetAtlasSource_gc1ai")
 pattern_0 = SubResource("TileMapPattern_jq6p4")

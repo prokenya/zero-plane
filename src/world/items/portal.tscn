@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcdgaatql66wx"]
+
+[ext_resource type="Script" uid="uid://d3w8bueqfkgh5" path="res://src/world/items/portal.gd" id="1_qcptc"]
+[ext_resource type="Texture2D" uid="uid://ch1ylxcygdcyk" path="res://src/world/items/portal_back.png" id="2_qcptc"]
+[ext_resource type="Texture2D" uid="uid://behb0t6232qr5" path="res://src/world/items/portal_front.png" id="3_1hsc2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_11wq1"]
+size = Vector2(10, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hsc2"]
+atlas = ExtResource("2_qcptc")
+region = Rect2(0, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhfuw"]
+atlas = ExtResource("2_qcptc")
+region = Rect2(16, 0, 16, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o84ll"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hsc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhfuw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="portal" type="Area2D"]
+texture_filter = 1
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_qcptc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_11wq1")
+
+[node name="sprites" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="sprites"]
+z_index = 1
+texture = ExtResource("3_1hsc2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="sprites"]
+light_mask = 0
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_o84ll")
+autoplay = "default"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

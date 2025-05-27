@@ -19,6 +19,7 @@ fill_from = Vector2(0.5, 0.5)
 size = Vector2(8, 16)
 
 [node name="cristal" type="Area2D"]
+z_index = -1
 texture_filter = 1
 collision_layer = 4
 collision_mask = 0
@@ -29,7 +30,6 @@ streams = Array[AudioStream]([ExtResource("2_iy532"), ExtResource("3_iy532"), Ex
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(0, -0.00778627)
 texture = ExtResource("2_3vtv2")
 hframes = 4
 
