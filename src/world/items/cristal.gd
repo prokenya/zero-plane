@@ -37,12 +37,16 @@ func _ready() -> void:
 	if type in [types.REVERSE_G,types.REVERSE_P]:
 		Global.connect("sync_types",sync_types)
 	elif type == types.GRAVITY and !lock_rotation:
-		Global.connect("sync_rotation",animate_rotation)
+		Global.connect("sync_rotation",_animate_rotation)
 		
 
 func sync_types(stype:int):
 	type = stype
 	animate_light()
+
+func _animate_rotation(angle):
+	timer.start()
+	animate_rotation(angle)
 
 func interact(player:Player) -> bool:
 	if !timer.is_stopped(): return false

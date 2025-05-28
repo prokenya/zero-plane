@@ -32,6 +32,7 @@ var default_gravity_direction = Vector2.DOWN
 @onready var magnetized_player: AudioStreamPlayer = $magnetized_player
 @onready var demagnetized_player: AudioStreamPlayer = $demagnetized_player
 @onready var hurt_player: AudioStreamPlayer = $hurt_player
+@onready var insteraction: Area2D = $insteraction
 
 
 func _ready() -> void:
@@ -105,6 +106,7 @@ func reset_player():
 	cached_gravity_direction = Vector2.DOWN
 	default_gravity_direction = Vector2.DOWN
 	reverce_magnet = false
+	insteraction.inter_pressed = false
 	Global.emit_signal("sync_types",1)
 	Global.emit_signal("sync_rotation",0)
 	Global.gui.set_dafault_status()
